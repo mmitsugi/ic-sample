@@ -2,6 +2,10 @@
 
 Image Classifcation Example using ImageNet pretrained ResNet50/Xception model and Flask
 
+## Architecture
+
+![Architecture](doc/images/architecture.png)
+
 ## References
 
 * [ImageNet Dataset](https://www.image-net.org)
