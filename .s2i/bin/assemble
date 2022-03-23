@@ -6,8 +6,8 @@ echo "---> Installing application source ..."
 mv /tmp/src/* "$HOME"
 
 ## ppc64le need hdf5-devel for tensorflow
-sudo dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-sudo dnf -y install hdf5-devel
+dnf -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+dnf -y install hdf5-devel
 
 # set permissions for any installed artifacts
 fix-permissions /opt/app-root -P
