@@ -9,7 +9,7 @@ RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.n
     yum -y install hdf5-devel && \
     yum -y clean all --enablerepo='*'
 
-ADD app-src /tmp/src
+ADD . /tmp/src
 RUN /usr/bin/fix-permissions /tmp/src
 USER 1001
 
