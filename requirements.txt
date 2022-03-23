@@ -1,5 +1,6 @@
 Cython==0.29.28
-h5py==2.10.0
+numpy==1.18.5
+h5py==2.7.1
 https://powerci.osuosl.org/job/TensorFlow2_PPC64LE_CPU_Release_Build/lastSuccessfulBuild/artifact/tensorflow_pkg/tensorflow_cpu-2.3.2-cp36-cp36m-linux_ppc64le.whl
 Pillow==8.4.0
 Flask==2.0.2
