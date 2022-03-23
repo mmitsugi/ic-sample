@@ -10,11 +10,12 @@ RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.n
     yum -y clean all --enablerepo='*'
 
 ADD . /tmp/src
-RUN /usr/bin/fix-permissions /tmp/src
+RUN  chown -R 1001:0 /tmp/src &&
+     /usr/bin/fix-permissions /tmp/src
 USER 1001
 
 # Install the dependencies
-RUN chmod +x /tmp/src/.s2i/bin/assemble && /tmp/src/.s2i/bin/assemble
+RUN /tmp/src/.s2i/bin/assemble
 
 # Set the default command for the resulting image
 CMD /usr/libexec/s2i/run
