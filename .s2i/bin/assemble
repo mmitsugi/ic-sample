@@ -1,0 +1,33 @@
+#!/bin/bash
+
+set -e
+shopt -s dotglob
+echo "---> Installing application source ..."
+mv /tmp/src/* "$HOME"
+
+# set permissions for any installed artifacts
+fix-permissions /opt/app-root -P
+
+if [[ ! -z "$UPGRADE_PIP_TO_LATEST" ]]; then
+  echo "---> Upgrading pip, setuptools and wheel to latest version ..."
+  if ! pip install -U pip setuptools wheel; then
+    echo "WARNING: Installation of the latest pip, setuptools and wheel failed, trying again from official PyPI with pip --isolated install"
+    pip install --isolated -U pip setuptools wheel
+  fi
+fi
+
+# ppc64le h5py build needs Cython first
+pip install Cython==0.29.28
+
+if [[ -f requirements.txt ]]; then
+  echo "---> Installing dependencies ..."
+  pip install -r requirements.txt
+fi
+
+if [[ ( -f setup.py || -f setup.cfg ) && -z "$DISABLE_SETUP_PY_PROCESSING" ]]; then
+  echo "---> Installing application ..."
+  pip install .
+fi
+
+# set permissions for any installed artifacts
+fix-permissions /opt/app-root -P
