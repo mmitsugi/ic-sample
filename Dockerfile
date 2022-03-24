@@ -10,7 +10,9 @@ RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.n
     yum -y clean all --enablerepo='*'
 
 ADD . /tmp/src
+COPY ./s2i/bin/ /usr/libexec/s2i
 RUN  chown -R 1001:0 /tmp/src && \
+     chmod -R +x /usr/libexec/s2i && \
      /usr/bin/fix-permissions /tmp/src
 USER 1001
 
